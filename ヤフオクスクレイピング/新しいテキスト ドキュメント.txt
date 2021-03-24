@@ -1,0 +1,16 @@
+https://fastclassinfo.com/entry/yahooauction_python/
+
+5つのライブラリを設定
+・datetime→Excelファイル名の作成
+・openpyxl→Excelファイルの操作
+・PatternFill→Excelの背景色の変更
+・requests→ウェブ情報の取得
+・BeautifulSoup→ウェブスクレイピングでデータを抽出
+
+取得する製品の詳細情報｜変数
+・タイトル｜name
+・URL｜link
+・現在の価格｜currentprice
+・即決価格｜fixedprice
+・入札｜label
+・残り時間｜lefttime
