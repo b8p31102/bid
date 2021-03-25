@@ -22,7 +22,7 @@ def Pagecrawling(soup, item_list):
         prices = product.find_all('div', class_='Product__priceInfo')
 
         # プログラム2-5｜変数productsのなかで、divタグで、class='Product__otherInfo'のものを変数othersに格納
-        others = product.find_all('div', class_='Product__otherInfo')
+        others = product.find_all('div', class_='Product__otherInfo cf')
 #製品の詳細情報を取得｜プログラム2-6~2-17
         # プログラム2-6｜zip関数でまとめて繰り返し処理を実行
         for (url, price, other) in zip(urls, prices, others):
@@ -43,7 +43,7 @@ def Pagecrawling(soup, item_list):
             # プログラム2-11｜変数pricevaluesの要素を一つずつ処理
             for pricevalue in pricevalues:
 
-                # プログラム2-12｜もし変数pricevalueのテキスト情報が'現在'が含まれていれば
+                # プログラム2-12｜落札の文字を見つけて落札価格の表示　class='Product__price'
                 if '落札' in pricevalue.get_text():
 
                     # プログラム2-13｜変数currentpriceに現在の価格を取得（'\n'で改行を削除）
@@ -56,11 +56,11 @@ def Pagecrawling(soup, item_list):
                     fixedprice = pricevalue.get_text().replace('\n', '')
                 """
 
-            # プログラム2-16｜変数labelのdivタグの0番目の要素を取得（'\n'で改行を削除）→入札
-            label = other.find_all('div')[0].get_text().replace('\n','')
+            # プログラム2-16｜変数labelのdivタグの1番目の要素を取得（'\n'で改行を削除）→入札回数
+            label = other.find_all('div')[1].get_text().replace('\n','')
 
-            # プログラム2-17｜変数labelのdivタグの1番目の要素を取得（'\n'で改行を削除）→残り時間
-            lefttime = other.find_all('div')[1].get_text().replace('\n','')
+            # プログラム2-17｜変数labelのdivタグの２番目の要素を取得（'\n'で改行を削除）→残り時間
+            lefttime = other.find_all('div')[2].get_text().replace('\n','')
 
             # プログラム2-18｜リスト「item_list」に必要な要素を追加
             item_list.append([name, link, currentprice, fixedprice, label, lefttime]) #item_list」のりストへ製品の詳細情報を追加｜プログラム2-18
@@ -94,7 +94,7 @@ def Write_excel(item_list, keyword):
     fill = PatternFill(patternType='solid', fgColor='e0e0e0', bgColor='e0e0e0')
 
     # プログラム4-3｜エクセル1行目のヘッダーを出力
-    headers = ['No', 'タイトル', '即決価格','入札']
+    headers = ['No', 'タイトル', '即決価格','終了','入札','終了日時']
     for i, header in enumerate(headers):
         ws.cell(row=1, column=1+i, value=headers[i])
         ws.cell(row=1, column=1+i).fill = fill
