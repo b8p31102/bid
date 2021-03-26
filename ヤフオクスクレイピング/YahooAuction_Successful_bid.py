@@ -121,7 +121,8 @@ def Write_excel(item_list, keyword):
 
 #プログラム5｜mainプログラム
 # プログラム5-1｜検索キーワードとYahooオークションURLの設定
-keyword = input('出力したい商品名')
+#keyword = input('出力したい商品名')
+keyword = main.keyword
 url = 'https://auctions.yahoo.co.jp/closedsearch/closedsearch?p=' + keyword + '&n=100';
 
 # プログラム5-2｜ヤフオクページの取得
