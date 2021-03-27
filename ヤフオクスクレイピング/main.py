@@ -9,7 +9,7 @@ import tkinter.ttk as ttk
 def btn1():
     #YahooAuction_bid.py表実行
     subprocess.Popen(r'YahooAuction_Successful_bid.exe')
-    keyword = entry1_frame()
+    #keyword = entry1_frame()
         
 
 def btn2():
